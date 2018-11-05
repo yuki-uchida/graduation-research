@@ -1,7 +1,7 @@
 import pandas as pd
 import re
 import numpy as np
-df = pd.read_csv('comment.csv',encoding='cp932')
+df = pd.read_csv('20181105.csv',encoding='cp932')
 comment_list = []
 columns = []
 column_num = 1
@@ -15,13 +15,16 @@ for review in df["0"]:
       if column_num <= 50:
         columns.append("##{}##".format(column_num))
         column_num = column_num + 1
+print(columns)
 new_list = []
 new_list.append(columns)
 while len(comment_list) >= 1:
   new_list.append(comment_list[0:50])
   del(comment_list[0:50])
 
-new_list = np.array(new_list).reshape((1,7))
+#reshapeの大きさはnew_listの中にある50個ずつのリストの数
+print(len(new_list[0]))
+new_list = np.array(new_list).reshape((1,5))
 
 for row in new_list[0]:
   try:
@@ -30,15 +33,15 @@ for row in new_list[0]:
     df2 = pd.DataFrame(row).T
 
 # print(df2)
-df2.to_csv('comment_cw.csv',header=False,index=True,encoding='cp932')
+df2.to_csv('cw20181105.csv',header=False,index=True,encoding='cp932')
 
 
 
 
 import csv
-csv_file = open("comment_cw.csv", "r", encoding="cp932", errors="", newline="" )
+csv_file = open("cw20181105.csv", "r", encoding="cp932", errors="", newline="" )
 csv_reader = csv.reader(csv_file, delimiter=",", doublequote=True, lineterminator="\r\n", quotechar='"', skipinitialspace=True)
-output_csv = open('some.csv', 'w', encoding="cp932")
+output_csv = open('some20181105.csv', 'w', encoding="cp932")
 writer = csv.writer(output_csv, lineterminator='\n')
 
 first_line = True

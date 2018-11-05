@@ -45,7 +45,8 @@ def scraping2(hotel_num):
 
 
 
-hotel_list = [136041,5547,129475,19455,27896,7489,16654]
+# hotel_list = [136041,5547,129475,19455,27896,7489,16654]
+hotel_list = [167893,1459,162650,9501]
 all_comments = []
 for hotel_num in hotel_list:
   #all_comments.extend(scraping(hotel_num))
@@ -53,5 +54,5 @@ for hotel_num in hotel_list:
 
 print(all_comments)
 
-# df = pd.DataFrame(all_comments)
-# df.to_csv('comment.csv',encoding='cp932')
+df = pd.DataFrame(all_comments)
+df.to_csv('20181105.csv',encoding='cp932')
